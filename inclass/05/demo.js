@@ -89,3 +89,23 @@ let remainingDeposit = calculateAmount(tripSubtotal, depositPaid, subtractAmount
 console.log(tripSubtotal);
 console.log(remainingDeposit);
 
+const buildNumberLogger = function(){
+    let currentStep = 1;
+    return function(text) {
+        console.log(`${currentStep}) ${text}`);
+        currentStep++; // currentStep +=1 OR currentStep ++ are the same thing
+    };
+};
+displayHeading('Returning a function from another function');
+let logStep = buildNumberLogger();
+logStep(`Confirm ${studentCount} students.`);
+logStep(`Reserve ${busCount} buses`);
+logStep(`Collect ${formatMoney(remainingDeposit)} remaons after deposit`);
+console.log();
+
+let morningCheckList = buildNumberLogger();
+morningCheckList('Load lunch');
+// function states are diff for morningCheckList and logStep
+
+
+
