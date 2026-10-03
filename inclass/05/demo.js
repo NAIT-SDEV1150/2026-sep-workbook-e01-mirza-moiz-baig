@@ -61,7 +61,7 @@ console.log(formatMoney(calculateMealCost(studentCount, mealPrice)));
 // Function Expressions
 const calculateAdmissionCost = function(studentCount, admissionPrice) {
     return studentCount * admissionPrice;
-};
+}; 
 // function is anonymous and variable points to it
 
 displayHeading('Function expressions');
@@ -96,6 +96,7 @@ const buildNumberLogger = function(){
         currentStep++; // currentStep +=1 OR currentStep ++ are the same thing
     };
 };
+
 displayHeading('Returning a function from another function');
 let logStep = buildNumberLogger();
 logStep(`Confirm ${studentCount} students.`);
@@ -108,4 +109,4 @@ morningCheckList('Load lunch');
 // function states are diff for morningCheckList and logStep
 
 
-
+// export{displayHeading};
