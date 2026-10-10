@@ -84,7 +84,7 @@ console.log(`Path: ${signUpUrl.pathname}`);
 console.log(`${signUpUrl.searchParams.get('level')}`);
 console.log();
 
-
+export { START, END, workshop, facilitator }
 
 
 

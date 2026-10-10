@@ -102,3 +102,4 @@ console.log('The quantity of frozen peas: ', cart[2].quantity);
 console.log('The price of bread', cart[0].price);
 console.log(cart[cart.length]); //returns undefined because the bracket notation index exceeds the length of the cart.
 // console.log(`cart[cart.length].price gives ${cart[cart.length].price}`);
+export { cart, pickupItems, itemPrices, itemIsFrozen }

@@ -75,3 +75,5 @@ report += `
 7 * '7' produces ${numberExample * stringExample};
 `;
 console.log(report);
+
+export { tax, totalWithTax, gstRate, totalBudget, donationText, donationAmount }
