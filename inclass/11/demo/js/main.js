@@ -2,9 +2,10 @@ import '@picocss/pico/css/pico.green.min.css';
 import { fillCredits } from './credits';
 
 console.log('Lesson 12 main.js loaded');
+const pageHeading = document.querySelector('h1');
 const lessonNumber = 12;
 console.log(lessonNumber);
-const pageHeading = document.querySelector('h1'); // this only selects the first occurence of h1
+ // this only selects the first occurence of h1
 console.log(pageHeading);
 console.log(typeof pageHeading);
 console.log(pageHeading.__proto__.constructor.name);
@@ -54,5 +55,5 @@ asideImage.setAttribute('src','./img/undraw_code-review_jdgp.svg');
 // .setAttribute(name of attribute, value of attribute)
 
 languageList.style.borderLeft = '0.4rem solid var(--pico-primary)';
-languageList.style.paddingLeft = '1rem';
+languageList.style.paddingLeft = '1rem'; // in-line css
 fillCredits(2026, 'Moiz'); // Use YOUR name
