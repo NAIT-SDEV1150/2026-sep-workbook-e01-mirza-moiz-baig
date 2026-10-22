@@ -89,6 +89,13 @@ completionImage.width = '220'; // <img src = .img/undraw_completed_vjc6.svg  alt
 completionCaption.textContent = 'Image created and configured with javascript';// <figcaption>Image created and configured with javascript</figcaption>
 completionFigure.append(completionImage, completionCaption);
 mainContent.append(completionFigure);
+// replacing and removing elements.
+const replacementItem = document.createElement('li');
+replacementItem.textContent = 'DOM nodes can be replaced';
+firstlanguage.replaceWith(replacementItem);
+
+ruleAfterList.remove();// can remove htmlcode
+
 
 
 
