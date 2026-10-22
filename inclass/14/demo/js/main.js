@@ -29,3 +29,28 @@ console.log(missingPanel);
 const languageList = mainContent.querySelector('ul');
 const languageItems = languageList.querySelectorAll('li');
 
+// Navigating the DOM tree.
+const listParent = languageList.parentElement;
+console.log(listParent);
+const firstlanguage = languageList.firstElementChild;
+// .firstchild() can contains text nodes as well as element nodes
+// .firstElementChild() only contains element nodes.
+console.log(firstlanguage);
+const lastLanguage = languageList.lastElementChild;
+console.log(lastLanguage);
+// firstlanguage.nextElementSibling;
+// lastLanguage.previousElementSibling;
+const paragraphBeforeList = languageList.previousElementSibling;
+const ruleAfterList = languageList.nextElementSibling;
+console.log(paragraphBeforeList);
+console.log(ruleAfterList);
+// whenever a property has 'child', it gets text nodes too including whitespaces
+pageHeading.textContent = 'DOM API Practice';
+languageList.style.paddingLeft = '1rem';// inline css
+
+
+
+
+
+
+
