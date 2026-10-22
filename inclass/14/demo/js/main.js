@@ -48,6 +48,39 @@ console.log(ruleAfterList);
 pageHeading.textContent = 'DOM API Practice';
 languageList.style.paddingLeft = '1rem';// inline css
 
+// create text nodes and elements
+const statusMessage = document.createElement('p'); // <p></p>
+// .createElement creates an element.
+// this element at this point is not the part of document
+statusMessage.textContent = 'Create with document.createElement() and textcontent'; // <p>Create with document.createElement() and textcontent </p>
+mainContent.append(statusMessage);
+// it is at this point that the tag will display in the browser.
+
+const reminder = document.createElement('p');// <p></p>
+const reminderLabel = document.createElement('strong'); // <strong></strong>
+reminderLabel.textContent = 'created text nodes besides element nodes'; // <strong>created text nodes besides element nodes</strong>
+const reminderText = document.createTextNode('This text is created with document.createTextNode');
+console.log(reminder, reminderLabel, reminderText);
+// <p></p>
+reminder.append(reminderLabel);// <p><strong>created text nodes besides element nodes</strong></p>
+reminder.appendChild(reminderText);// <p><strong>created text nodes besides element nodes</strong>This text is created with document.createTextNode</p>
+console.log(reminder);
+
+mainContent.append(reminder);
+// It is only at this point that html code is the part of the document.
+
+// appendchild vs append
+// appendChild can add only 1 element at once
+// list.appendChild(item1, item2, item3); would throw an error
+// list.append(item1, item2, item3); would work.
+// .append can add text nodes as well.
+// .appendchild returns the appended node
+// .append returns nothing
+
+
+
+
+
 
 
 
