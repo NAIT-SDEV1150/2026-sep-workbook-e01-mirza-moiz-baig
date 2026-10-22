@@ -77,6 +77,19 @@ mainContent.append(reminder);
 // .appendchild returns the appended node
 // .append returns nothing
 
+// create and insert an image
+const completionFigure = document.createElement('figure');// <figure></figure>
+const completionImage = document.createElement('img');// <img> </img>
+const completionCaption = document.createElement('figcaption');// <figcaption></figcaption>
+
+completionImage.src = './img/undraw_completed_vjc6.svg';// <img src = .img/undraw_completed_vjc6.svg> </img>
+
+completionImage.alt = 'A completed task checklist';// <img src = .img/undraw_completed_vjc6.svg  alt = 'A completed task checklist'> </img>
+completionImage.width = '220'; // <img src = .img/undraw_completed_vjc6.svg  alt = 'A completed task checklist' width = 220> </img>
+completionCaption.textContent = 'Image created and configured with javascript';// <figcaption>Image created and configured with javascript</figcaption>
+completionFigure.append(completionImage, completionCaption);
+mainContent.append(completionFigure);
+
 
 
 
