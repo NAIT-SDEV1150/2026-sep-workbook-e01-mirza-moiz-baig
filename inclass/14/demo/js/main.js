@@ -6,7 +6,7 @@ const pageHeading = document.querySelector('h1');//  h1 selector string
 // selecting with classsnames
 // selecting with tagnames
 const mainContent = document.querySelector('main');
-const navLinks = document.querySelectorAll('nav a');
+const navLinks = document.querySelectorAll('nav a');// [a,a,a]
 // document.querySelector only selects first occurence
 // document.querySelectorALL will select all the occurneces.
 console.log(pageHeading);
@@ -52,7 +52,7 @@ languageList.style.paddingLeft = '1rem';// inline css
 const statusMessage = document.createElement('p'); // <p></p>
 // .createElement creates an element.
 // this element at this point is not the part of document
-statusMessage.textContent = 'Create with document.createElement() and textcontent'; // <p>Create with document.createElement() and textcontent </p>
+statusMessage.textContent = 'Created with document.createElement() and textcontent'; // <p>Create with document.createElement() and textcontent </p>
 mainContent.append(statusMessage);
 // it is at this point that the tag will display in the browser.
 
@@ -95,6 +95,17 @@ replacementItem.textContent = 'DOM nodes can be replaced';
 firstlanguage.replaceWith(replacementItem);
 
 ruleAfterList.remove();// can remove htmlcode
+
+// creating a document fragment.
+const fragment = document.createDocumentFragment();
+const newTopics = ['Select', 'Navigate', 'Create', 'Insert'];
+for (let topic of newTopics) {
+    const topicItem = document.createElement('li');// <li> </li>
+    topicItem.textContent = `Practice: ${topic}`;// <li>`Practice: 'Select'` </li>
+    fragment.append(topicItem);
+};
+languageList.append(fragment);
+// fragment is a temporary container. Its children move into the document.
 
 
 
