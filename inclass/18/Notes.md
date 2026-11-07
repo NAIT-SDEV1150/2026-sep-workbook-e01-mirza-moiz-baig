@@ -51,6 +51,27 @@ API: A way for two software applications to communicate.
 Endpoint: A specific URL where an application can request or send data.
 JSON Server: A tool that simulates a backend API using a local JSON file.
 
+### understanding HTTP status codes
+200 ok- request successful
+201 Created - resource created
+400 Bad request - request is invalid
+404 Not found - resource or ID does not exist
+500 Internal Server error - something went wrong on the server
+
+### HTTP METHODS
+# GET 
+retrieve or read data
+# POST
+create new data
+# PUT
+replace an existing resource
+# PATCH
+partially update a resource
+# DELETE
+delete a resource
+
+### REST 
+REST is an architectural style for creating webAPIs
 
 
 
