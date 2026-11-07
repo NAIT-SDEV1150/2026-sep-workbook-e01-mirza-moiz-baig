@@ -13,24 +13,47 @@ function showStatus(message, type = 'info') {
 }
 
 function renderBodies(bodies) {
-  // TODO: Clear the current list.
-  // TODO: Create and append one <li> for each body.
-  // TODO: Include the thumbnail image for each body.
+  bodyList.replaceChildren();// clears previous results
+  //bodies is expected to be a list of objects
+  bodies.forEach((body) => {
+    const item = document.createElement('li');
+    const image = document.createElement('img');
+    image.src = `http://localhost:3000/${body.image}`;
+    image.alt = body.name;
+    const text = document.createElement('span');
+    text.textContent = `${body.name} - ${body.category} - ${body.orbitalPeriod}`;
+    item.append(image, text);
+    bodyList.append(item);
+  });
 }
 
 function loadHandler() {
-  // TODO: Show a loading message.
-  // TODO: Call fetchJsonData(endpoint).
-  // TODO: Render bodies on success.
-  // TODO: Show a user-facing error on failure.
+  showStatus('loading bodies ...');
+  bodyList.innerHTML = `<li> Loading...</li>`;
+
+  fetchJsonData(endpoint)
+  .then((bodies) => {
+    renderBodies(bodies);
+    showStatus(`Loaded ${bodies.length} bodies`, 'success')
+    .catch((error) => {
+      bodyList.replaceChildren();
+      showStatus(`Error: ${error.message}, error`);
+    })
+  })
 }
 
 async function submitHandler(event) {
-  event.preventDefault();
-
-  // TODO: Collect form values with FormData.
-  // TODO: POST the body, reset the form, and reload the list.
-  // TODO: Show a user-facing error on failure.
+  event.preventDefault(); // never reload the webpage
+  const formData = new FormData(event.target);
+  const body = Object.fromEntries(formData.entries());
+  try {
+    await postData(endpoint, body);
+    event.target.reset(); // reset the form
+    showStatus('Body added', 'success');
+    loadHandler();
+  } catch(error) {
+    showStatus(`Error: ${error.message}, error`);
+  }
 }
 
 loadButton.addEventListener('click', loadHandler);

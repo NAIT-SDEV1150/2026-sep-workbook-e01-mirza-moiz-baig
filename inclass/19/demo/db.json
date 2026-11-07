@@ -167,6 +167,15 @@
       "radius": "1,163 km",
       "orbitalPeriod": "557 Earth years",
       "discoveryDate": "January 5, 2005"
+    },
+    {
+      "name": "dsdv",
+      "category": "dwarf planet",
+      "image": "sun.jpg",
+      "description": "dfgdg",
+      "orbitalPeriod": "sfv",
+      "id": "T_FLfMaoIro"
     }
-  ]
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
 }
