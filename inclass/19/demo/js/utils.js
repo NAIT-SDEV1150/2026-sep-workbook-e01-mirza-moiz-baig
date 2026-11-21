@@ -61,7 +61,7 @@ export async function patchData(endpoint, payload) {
   const response = await fetch(endpoint, {
     method: 'PATCH',
     headers: {
-      'Content-Type': 'application/json',
+      'Content-Type': 'application/json',// json content is being used.
     },
     body: JSON.stringify(payload),
   });
