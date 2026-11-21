@@ -45,3 +45,38 @@ export function postData(endpoint, payload) {
 }
  */
 // try to write delete put patch yourself.
+export async function putData(endpoint, payload) {
+  const response = await fetch(endpoint, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(payload),
+  });
+
+  return handleResponse(response);
+}
+
+export async function patchData(endpoint, payload) {
+  const response = await fetch(endpoint, {
+    method: 'PATCH',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(payload),
+  });
+
+  return handleResponse(response);
+}
+
+export async function deleteData(endpoint) {
+  const response = await fetch(endpoint, {
+    method: 'DELETE',
+  });
+
+   if (!response.ok) {
+    const message = `Server responded with ${response.status}${response.statusText}`;
+    throw new Error(message);
+  }
+  return response.json() // converts the response to json.
+}

@@ -69,10 +69,11 @@ template.innerHTML = `
 
 
 // Define a custom HTML element called UserCard that inherits built-in HTML element functionality.
-class UserCard extends HTMLElement {
+class UserCard extends HTMLElement {// 
   constructor() { // runs automatically when a new user-card is created.
     super();// calls the parent HTMLElement constrcutor to initialize the element.
     const shadow = this.attachShadow({mode: 'open'});//create a shadow dom for our component
+    // 90% of the time mode:'open'
     const content = template.content.cloneNode(true);// clone the template content so it can be reused
     // .cloneNode(true) does deep cloning(clone all the children) 
     this.image = content.querySelector('img');
