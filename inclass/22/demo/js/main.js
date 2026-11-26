@@ -7,10 +7,14 @@ let darkMode = false;
 let avatarIndex = 2;
 
 themeToggle.addEventListener('click', () => {
-  // TODO: Toggle a data-theme value on document.documentElement.
+  darkMode = !darkMode;
+  document.documentElement.dataset.theme = darkMode ? 'dark':'light';
+  themeToggle.textContent = darkMode ? 'use light theme':
+  'use dark theme';
+  // .dataset refers to all data properties data-theme
 });
 
 avatarDemo.addEventListener('click', () => {
-  // TODO: Change the avatar attribute to another local avatar path.
   avatarIndex = (avatarIndex + 1) % users.length;
+  avatarDemo.setAttribute('avatar', users[avatarIndex].avatar);
 });

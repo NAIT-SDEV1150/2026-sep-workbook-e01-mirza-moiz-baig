@@ -1,10 +1,16 @@
 const template = document.createElement('template');
-
+// scoped CSS styles
+// :host is a pseudo-element
 template.innerHTML = `
   <style>
-    /* TODO: Add :host defaults for display and CSS custom properties. */
-    /* TODO: Use :host([variant="featured"]) for a featured card style. */
-    /* TODO: Use ::slotted([slot="name"]) to style assigned light-DOM content. */
+    :host {
+    --card-bg: var(--user-card-bg, #ffffff);
+    --card-color: var(--user-card-color, #172033);
+    --card-accent: var(--user-card-accent, #0f766e)
+    }
+    :host([variant="featured"]) .card {
+    border-color: var(--card-accent);
+    }
 
     .card {
       display: grid;
@@ -15,8 +21,8 @@ template.innerHTML = `
       padding: 1rem;
       border: 1px solid #9aa8ba;
       border-radius: 8px;
-      background: #ffffff;
-      color: #172033;
+      background: var(--card-bg);
+      color: var(--card-color);
     }
 
     img {
@@ -25,10 +31,21 @@ template.innerHTML = `
       border-radius: 50%;
       object-fit: cover;
     }
+    ::slotted([slot="name"]) {
+    display:block;
+    color: var(--card-accent);
+    font-weight: 700;
+    }
+    ::slotted([slot="desciption"]) {
+    display: block;
+    margin-top: 0.25rem;
+    color: var(--card-muted);
+    line-height: 1.4;
+    }
   </style>
 
   <article class="card" part="card">
-    <img src="" alt="">
+    <img part="avatar" src="" alt="">
     <div>
       <slot name="name">Unknown user</slot>
       <slot name="description">No description provided.</slot>
@@ -63,3 +80,16 @@ class UserCard extends HTMLElement {
 }
 
 customElements.define('user-card', UserCard);
+/**
+ * Styling Hooks
+Using the following hooks deliberately:
+
+:host styles the custom element from inside its own shadow root.
+:host() targets the host only when it matches a selector, such as an attribute.
+::slotted() styles light-DOM content assigned to a slot
+::slotted() styles from shadow DOM.
+CSS custom properties let the page provide theme values to the component.
+part and ::part expose specific internal elements for external styling.
+
+
+ */
