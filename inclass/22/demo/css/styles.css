@@ -7,6 +7,7 @@
   --accent: #0f766e;
 }
 
+
 :root[data-theme="dark"] {
   color-scheme: dark;
   --page-bg: #172033;

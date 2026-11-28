@@ -90,6 +90,4 @@ Using the following hooks deliberately:
 ::slotted() styles from shadow DOM.
 CSS custom properties let the page provide theme values to the component.
 part and ::part expose specific internal elements for external styling.
-
-
  */

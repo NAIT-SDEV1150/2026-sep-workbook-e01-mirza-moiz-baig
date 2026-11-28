@@ -19,6 +19,12 @@ template.innerHTML = `
       color: #172033;
     }
 
+    :host([followed]) .card {
+    border-color: #0f766e;
+    border-width: 2px;
+    box-shadow: 0 0 0 3px #ccfbf1;
+    }
+
     img {
       width: 72px;
       height: 72px;
@@ -62,8 +68,8 @@ template.innerHTML = `
 `;
 
 class UserCard extends HTMLElement {
-  // TODO: Add private fields for followed state and user data.
-
+  #followed = false; // strictly private field #
+  #user = null; // cannot be accessed from outside.
   constructor() {
     super();
 
@@ -74,8 +80,8 @@ class UserCard extends HTMLElement {
     this.nameElement = content.querySelector('h2');
     this.locationElement = content.querySelector('.location');
     this.aboutElement = content.querySelector('.about');
-    // TODO: Add our button and bind its handler to this instance
-
+    this.button = content.querySelector('button');
+    this.handleButtonClick = this.handleButtonClick.bind(this);
     shadow.append(content);
   }
 
@@ -89,16 +95,24 @@ class UserCard extends HTMLElement {
   }
 
   static get observedAttributes() {
-    // TODO: Observe attributes that should sync to component state.
-    return [];
+    return ['avatar', 'followed'];
   }
 
   attributeChangedCallback(name, oldValue, newValue) {
-    // TODO: Sync observed attribute changes to component state.
+    if (oldValue === newValue) {
+      return;
+    }
+    if (name === 'avatar' && this.image) {
+      this.image.src = newValue || 'assets/avatars/clarence-james.jpg';
+    }
+    if (name === 'followed') {
+      this.setFollowed(newValue !== null, false);
+    }
   }
 
   set user(value) {
-    // TODO: Store the user object and render the card.
+    this.#user = value;
+    this.render();
   }
 
   get user() {
@@ -107,29 +121,58 @@ class UserCard extends HTMLElement {
   }
 
   get followed() {
-    // TODO: Return the current followed state.
-    return false;
+    return this.#followed;
   }
 
   follow() {
-    // TODO: Set followed state to true.
+   this.setFollowed(true);
   }
 
   unfollow() {
-    // TODO: Set followed state to false.
+    this.setFollowed(false);
   }
 
   handleButtonClick() {
-    // TODO: Toggle the followed state when the button is clicked.
+   this.setFollowed(!this.#followed);
   }
 
   setFollowed(value, emitEvent = true) {
-    // TODO: Set the followed state and trigger an event dispatch
+    this.#followed = Boolean(value);
+    this.button.textContent = this.#followed ? 'Following' : 'Follow';
+    this.toggleAttribute('followed', this.#followed);
+    if (emitEvent) {
+      // TODO: dispatch a custom event (on follow)
+    }
   }
 
   render() {
-    // TODO: Render the current user information
+    const user = this.#user;
+    if (user && this.shadowRoot) {
+      this.setAttribute('user-id', user.id);
+      this.setAttribute('avatar', user.avatar);
+      this.nameElement.textContent = user.name;
+      this.locationElement.textContent = user.location;
+      this.aboutElement.textContent = user.about;
+      this.image.alt = `Profile photo for ${user.name}`;
+      this.handleButtonClick.textContent = this.followed ? 'Following' : 'Follow';
+    }
   }
 }
 
 customElements.define('user-card', UserCard);
+/**
+ * Component State is the data that a component rememebrs and manages internally. It can change while app is running.
+ * A component is a resuable piece of UI.
+ * State is the information that the component currently remembers.
+ * Whenever state changes, component needs to reflect those changes in UI.
+ * State can store Number, String, Boolean, Array, Object, form data.
+ */
+
+/**
+ * LIFECYCLE METHODS/ CALLBACK: Special methods that automatically run during different stages of a component's life.
+ * constructor(): initializes a component when its created.
+ * connectedCallback(): Runs when a component is added to the DOM.
+ *disconnectedCallback(): Runs when a component is removed to the DOM.
+ static get observedAttributes(): watches for changes inside the attributes mentioned in return;
+ attributeChangedCallback(): Runs when an observed attribute is changed.
+ */

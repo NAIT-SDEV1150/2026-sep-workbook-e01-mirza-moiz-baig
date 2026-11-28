@@ -9,9 +9,12 @@ function updateFollowCount() {
 }
 
 function renderUser(user) {
-  // TODO: Create a <user-card>.
-  // TODO: Set the user property with the user object.
-  // TODO: Append the card to userList.
+  // Create a <user-card>
+  const card = document.createElement('user-card');// <user-card> </user-card>
+  // Set the user property with the user object
+  card.user = user // using a setter to set the value of usercard.
+  // Append the card to userList.
+  userList.append(card);
 }
 
 userList.addEventListener('follow-change', () => {
